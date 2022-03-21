@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="shortcut icon" href="icon.ico">
+    <title>Blocks</title>
+    <style>
+      * {
+        margin: 0;
+        font-family: "Fredoka", sans-serif;
+      }
+
+      body {
+        background-color: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      #login{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        width: 300px;
+        height: 500px;
+        border-radius: 10px;
+        padding: 30px;
+        background-color:#8d39ec;
+      }
+
+      img{
+        margin: 0;
+        padding: 0%;
+        width: 250px;
+        height: 250px;
+      }
+
+      #login p{
+        display: flex;
+        align-items: center;
+      }
+
+      #login input{
+        border: none;
+        border-radius: 10px;
+        width: 200px;
+        height: 50px;  
+        text-align: center;
+        font-size: 30px;
+      }
+
+      #login input[type="checkbox"]{
+        margin: 10px;
+        width: 25px;
+        height: 25px;
+      }
+
+      #login input::placeholder{
+          opacity: 0.7;
+          font-size: 18px;
+      }
+
+      #login button{
+        background-color: #ea80fc;
+        width: 250px;
+        margin: 10px;
+        border-radius: 30px;
+        color: white;
+        padding: 18px;
+        border: none;
+        text-align: center;
+        outline: none;
+        font-size: 20px;
+        outline: 0;
+      }
+
+      #main{
+          width: 100%;
+          height: 100%;
+      }
+
+      .header {
+        display: flex;
+        justify-content: center;
+        align-items: center ;
+        text-align: center;
+        flex-wrap: wrap;
+        width: 100%;
+        height: 130px;
+        background-color: #8d39ec;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+      }
+
+     .days{
+        position: absolute;
+        display: flex;
+        width: 100%;
+        height: 40px;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .prevday,.nextday{
+        color: white;
+        width: 100%;
+        background: none;
+        border: none;
+        font-size: 17px;
+      }
+
+      .header p {
+        font-size: 32px;
+        font-weight: 550;
+        color: beige;
+      }
+
+      .buttons{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-wrap: wrap;
+      }
+
+      .holiday{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+      }
+
+      .collapsible {
+        background-color: #ea80fc;
+        width: 80%;
+        margin: 20px;
+        border-radius: 30px;
+        color: white;
+        padding: 18px;
+        border: none;
+        text-align: center;
+        outline: none;
+        font-size: 20px;
+        outline: 0;
+      }
+
+      .content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        position: relative;
+        padding: 0 18px;
+        width: 80%;
+        border-radius: 5px;
+        max-height: 0;
+        overflow: hidden;
+        font-size: 18px;
+        transition: max-height 0.2s ease-out;
+        background-color: #ff80ab;
+        color: white;
+        clear: both;
+      }
+
+      .content p{
+          margin: 5px;
+      }
+
+      .footerbar{
+        height: 50vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+      }
+      .footer{
+          margin-top: 10px;
+          padding-bottom: 5px;
+          padding-top: 5px;
+          position: sticky;
+          bottom: 0;
+          width: 100%;
+          background-color: grey;
+          text-align: center;
+          font-size: 15px;
+      }
+
+      .footer p{
+          margin: 5px;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div id="login">
+        <img src="logo.png" alt="" srcset="">
+        <p style="font-size: 20px; text-align: center; margin: 10px; color: white; font-weight: bold;">Enter your Roll Number to proceed!</p>
+        <p><input id="rollno" type="text" placeholder="21CSE069 ➡ 69 only" maxlength="3"></p>
+        <p style="font-size: 18px; font-weight: bold; color: white">From FIT ? <input id="isFIT" type="checkbox"></p>
+        <p><button class="submit" onclick="submit()">Show my Routine!</button></p>
+    </div>
+
+    <div id="main">
+      <div class="days">
+        <p><button class="prevday" onclick="prevday()">< Previous Day</button></p>
+        <p><button class="nextday" onclick="nextday()">Next Day ></button></p>
+      </div>
+        <div class="header">
+            <p id="greeting"></p>
+        </div>
+
+        <p><h1 id="section" style="margin: 10px; color: white; font-size: 22px; text-align: center;"></h1></p>
+    
+        <div class="buttons" id="buttons"></div>
+
+        <div class="footerbar">
+          <div class="footer">
+            <p>Made with ♥ by Shreyan Dey.</p>
+            <p>✉ Contact : <a href = "mailto: shreyan.dey.fiem.cse21@teamfuture.in" style="text-decoration: none; font-weight: bolder; color: black;">shreyan.dey.fiem.cse21@teamfuture.in</a></p>
+            <p>Blocks v1.5 Copyright © 2022. All rights reserved.</p>
+        </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
